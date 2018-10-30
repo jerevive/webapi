@@ -11,4 +11,5 @@
 
 // 应用容器绑定定义
 return [
+    'BannerModel' => app\index\model\Banner::class
 ];

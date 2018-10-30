@@ -10,3 +10,8 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+Facade::bind([
+    'app\facade\TestValidate' => 'app\index\validate\Test',
+    'app\facade\IdValidate' => 'app\index\validate\IdMustBePositiveInteger',
+    'app\facade\BannerModel' => 'app\index\model\Banner',
+]);
