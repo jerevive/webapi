@@ -10,6 +10,7 @@ namespace app\index\controller\v1;
 use think\Controller;
 use app\facade\IdValidate;
 use app\facade\BannerModel;
+use think\Exception;
 use think\facade\Request;
 use app\exception\BannerMissException;
 

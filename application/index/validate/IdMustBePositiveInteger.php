@@ -12,6 +12,7 @@ class IdMustBePositiveInteger extends BaseValidate
      */	
 	protected $rule = [
 	    'id' => ['require', 'IsMustBePositiveInt'],
+        'num' => ['in:1,2,3']
     ];
     
     /**
