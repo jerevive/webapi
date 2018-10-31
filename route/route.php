@@ -9,4 +9,11 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('/banner/:id', 'index/v1.Banner/getBanner');
+//Route::get('api/v1/banner/:id', 'api/v1.Banner/getBanner');
+
+Route::group('api/:version', function(){
+
+    Route::get('banner/:id', 'api/:version.Banner/getBanner');
+
+    Route::get('theme', 'api/:version.Theme/getSimpleList');
+});

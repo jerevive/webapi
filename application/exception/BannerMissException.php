@@ -12,5 +12,5 @@ class BannerMissException extends BaseException
 {
     public $code = 400;
     public $errorCode = 40000;
-    public $msg = '参数错误';
+    public $msg = '请求的Banner不存在';
 }

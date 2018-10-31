@@ -9,7 +9,6 @@ namespace app\exception;
 
 
 use think\Exception;
-use Throwable;
 
 class BaseException extends Exception
 {
@@ -28,7 +27,8 @@ class BaseException extends Exception
      */
     public $errorCode;
 
-    public function __construct($params)
+
+    public function __construct($params = [])
     {
         if(!is_array($params)) return;
 
