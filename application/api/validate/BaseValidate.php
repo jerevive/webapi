@@ -39,4 +39,19 @@ class BaseValidate extends Validate
         }
         return true;
     }
+
+    protected function getDataByRule($value, $data)
+    {
+        if(array_key_exists('user_id', $data) || array_key_exists('uid', $data))
+        {
+            throw new ParameterException(['code' => '403', 'msg' => '请求参数中含有非法的uid或user_id']);
+        }
+
+        $newArray = [];
+        foreach ($this->rule as $key => $value)
+        {
+            $newArray[$key] = $data[$key];
+        }
+        return $newArray;
+    }
 }

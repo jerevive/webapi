@@ -11,4 +11,8 @@ namespace app\api\model;
 class User extends BaseModel
 {
 
+    protected function address()
+    {
+        return $this->hasOne('UserAddress', 'user_id', 'id');
+    }
 }

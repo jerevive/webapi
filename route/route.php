@@ -26,4 +26,6 @@ Route::group('api/:version', function(){
     Route::get('category/all', 'api/:version.Category/getCategories');
 
     Route::post('token/user', 'api/:version.Token/getToken');
+
+    Route::post('address', 'api/:version.Address/createOrUpdateAddress');
 });
