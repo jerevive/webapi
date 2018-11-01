@@ -18,8 +18,10 @@ Route::group('api/:version', function(){
 
     Route::get('theme/:id', 'api/:version.Theme/getComplexOne');
 
+
     Route::get('product/recent', 'api/:version.Product/getRecent');
     Route::get('product/by_category', 'api/:version.Product/getAllInCategory');
+    Route::get('product/:id', 'api/:version.Product/getOne')->pattern(['id' => '\d+']);
 
     Route::get('category/all', 'api/:version.Category/getCategories');
 

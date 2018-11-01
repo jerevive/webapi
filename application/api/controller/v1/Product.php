@@ -11,6 +11,7 @@ namespace app\api\controller\v1;
 use app\api\validate\Count;
 use app\api\model\Product as ProductModel;
 use app\api\validate\IdMustBePositiveInteger;
+use app\exception\ProductException;
 
 class Product
 {
@@ -22,6 +23,7 @@ class Product
      * @param Count $validate
      * @param int $count
      * @return mixed
+     * @throws ProductException
      * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -43,6 +45,7 @@ class Product
      * @param IdMustBePositiveInteger $validate
      * @param $id
      * @return mixed
+     * @throws ProductException
      * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -53,6 +56,28 @@ class Product
         $validate->goCheck();
         $result = $product->getProductsByCategoryId($id)->hidden(['summary']);
         if($result->isEmpty()) throw new ProductException;
+        return $result;
+    }
+
+    /**
+     * 获得某一商品详情
+     * @url /product/id
+     * @http GET
+     * @param ProductModel $product
+     * @param IdMustBePositiveInteger $validate
+     * @param $id
+     * @return array|null|\PDOStatement|string|\think\Model
+     * @throws ProductException
+     * @throws \app\exception\ParameterException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getOne(ProductModel $product, IdMustBePositiveInteger $validate, $id)
+    {
+        $validate->goCheck();
+        $result = $product->getProductById($id);
+        if(!$result) throw new ProductException;
         return $result;
     }
 }
