@@ -22,4 +22,6 @@ Route::group('api/:version', function(){
     Route::get('product/by_category', 'api/:version.Product/getAllInCategory');
 
     Route::get('category/all', 'api/:version.Category/getCategories');
+
+    Route::post('token/user', 'api/:version.Token/getToken');
 });
