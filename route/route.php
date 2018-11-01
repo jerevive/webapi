@@ -9,11 +9,17 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-//Route::get('api/v1/banner/:id', 'api/v1.Banner/getBanner');
 
 Route::group('api/:version', function(){
 
     Route::get('banner/:id', 'api/:version.Banner/getBanner');
 
     Route::get('theme', 'api/:version.Theme/getSimpleList');
+
+    Route::get('theme/:id', 'api/:version.Theme/getComplexOne');
+
+    Route::get('product/recent', 'api/:version.Product/getRecent');
+    Route::get('product/by_category', 'api/:version.Product/getAllInCategory');
+
+    Route::get('category/all', 'api/:version.Category/getCategories');
 });

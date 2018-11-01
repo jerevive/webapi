@@ -17,7 +17,7 @@ class BaseValidate extends Validate
                 'msg' => $this->error
             ]);
         }
-        return true;
+        return Request::param();
     }
 
     protected function IsMustBePositiveInt($value)
