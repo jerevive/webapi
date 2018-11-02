@@ -19,7 +19,7 @@ use app\api\exception\UserException;
 use think\facade\Request;
 use think\Controller;
 
-class Address extends Controller
+class Address extends BaseController
 {
 
     protected $beforeActionList = [
@@ -55,21 +55,4 @@ class Address extends Controller
         return json(new SuccessMessage, 201);
     }
 
-    protected function checkPrimaryScope()
-    {
-        $token = (new Token)->getTokenVar('scope');
-        if($token)
-        {
-            if($token >= (new Enum)->User)
-            {
-                return true;
-            }else
-            {
-                throw new ForbiddenException;
-            }
-        }else
-        {
-            throw new TokenException;
-        }
-    }
 }

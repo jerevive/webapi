@@ -8,7 +8,7 @@
 namespace app\api\service;
 
 
-use app\api\Enum;
+use app\api\enum\Enum;
 use app\api\model\User;
 use app\api\exception\TokenException;
 use app\api\exception\WxException;
@@ -123,7 +123,7 @@ class UserToken extends Token
         /* user_id */
         $cacheValue['uid'] = $uid;
         /* scope */
-        $cacheValue['scope'] = 15;
+        $cacheValue['scope'] = (new Enum)->user;
 
         return $cacheValue;
     }

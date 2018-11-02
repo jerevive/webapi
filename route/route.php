@@ -8,7 +8,7 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
+use think\facade\Route;
 
 Route::group('api/:version', function(){
 
@@ -28,4 +28,6 @@ Route::group('api/:version', function(){
     Route::post('token/user', 'api/:version.Token/getToken');
 
     Route::post('address', 'api/:version.Address/createOrUpdateAddress');
+
+    Route::post('order', 'api/:version.Order/placeOrder');
 });

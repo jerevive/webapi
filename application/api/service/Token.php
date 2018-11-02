@@ -8,6 +8,8 @@
 namespace app\api\service;
 
 
+use app\api\enum\Enum;
+use app\api\exception\ForbiddenException;
 use app\api\exception\TokenException;
 use think\Exception;
 use think\facade\Cache;
@@ -62,8 +64,64 @@ class Token
         }
     }
 
+    /**
+     * 获得Token中Uid
+     * @return mixed
+     * @throws Exception
+     * @throws TokenException
+     */
     public function getCurrentUID()
     {
         return $this->getTokenVar('uid');
+    }
+
+    /**
+     * 用户和 管理员共有的权限
+     * @return bool
+     * @throws Exception
+     * @throws ForbiddenException
+     * @throws TokenException
+     */
+    public function needPrimaryScope()
+    {
+        $token = $this->getTokenVar('scope');
+        if($token)
+        {
+            if($token >= (new Enum)->user)
+            {
+                return true;
+            }else
+            {
+                throw new ForbiddenException;
+            }
+        }else
+        {
+            throw new TokenException;
+        }
+    }
+
+    /**
+     * 用户特有权限
+     * @return bool
+     * @throws Exception
+     * @throws ForbiddenException
+     * @throws TokenException
+     */
+    public function needExclusiveScope()
+    {
+        $token = $this->getTokenVar('scope');
+        if($token)
+        {
+            if($token == (new Enum)->user)
+            {
+                return true;
+            }else
+            {
+                throw new ForbiddenException;
+            }
+        }else
+        {
+            throw new TokenException;
+        }
     }
 }
