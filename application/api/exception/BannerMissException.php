@@ -5,7 +5,7 @@
  * Time: 13:52
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class BannerMissException extends BaseException

@@ -8,7 +8,7 @@
 namespace app\api\service;
 
 
-use app\exception\TokenException;
+use app\api\exception\TokenException;
 use think\Exception;
 use think\facade\Cache;
 use think\facade\Request;
@@ -47,7 +47,8 @@ class Token
         $token = Request::header('token');
         /* get cached value by token */
         $vars = Cache::get($token);
-        if(!$vars) throw new TokenException;
+        if(!$vars) throw new TokenException();
+
         if(!is_array($vars))
         {
             $vars = json_decode($vars, true);

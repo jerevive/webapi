@@ -5,7 +5,7 @@
  * Time: 10:56
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class ProductException extends BaseException

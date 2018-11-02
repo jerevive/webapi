@@ -5,7 +5,7 @@
  * Time: 15:38
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class WxException extends BaseException

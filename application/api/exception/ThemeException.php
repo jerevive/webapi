@@ -5,7 +5,7 @@
  * Time: 20:34
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class ThemeException extends BaseException

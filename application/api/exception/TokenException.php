@@ -5,7 +5,7 @@
  * Time: 16:43
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class TokenException extends BaseException

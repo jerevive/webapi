@@ -5,7 +5,7 @@ namespace app\api\controller\v1;
 use app\api\model\Theme as ThemeModel;
 use app\api\validate\IdCollection;
 use app\api\validate\IdMustBePositiveInteger;
-use app\exception\ThemeException;
+use app\api\exception\ThemeException;
 use think\facade\Request;
 
 class Theme
@@ -18,7 +18,6 @@ class Theme
      * @param IdCollection $validate
      * @return array|\PDOStatement|string|\think\Collection
      * @throws ThemeException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -39,7 +38,6 @@ class Theme
      * @param IdMustBePositiveInteger $validate
      * @return array|null|\PDOStatement|string|\think\Model
      * @throws ThemeException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException

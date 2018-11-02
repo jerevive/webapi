@@ -11,7 +11,7 @@ namespace app\api\controller\v1;
 use app\api\validate\Count;
 use app\api\model\Product as ProductModel;
 use app\api\validate\IdMustBePositiveInteger;
-use app\exception\ProductException;
+use app\api\exception\ProductException;
 
 class Product
 {
@@ -24,7 +24,6 @@ class Product
      * @param int $count
      * @return mixed
      * @throws ProductException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -46,7 +45,6 @@ class Product
      * @param $id
      * @return mixed
      * @throws ProductException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
@@ -68,7 +66,6 @@ class Product
      * @param $id
      * @return array|null|\PDOStatement|string|\think\Model
      * @throws ProductException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException

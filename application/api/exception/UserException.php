@@ -5,7 +5,7 @@
  * Time: 20:24
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class UserException extends BaseException

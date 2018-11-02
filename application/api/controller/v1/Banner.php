@@ -11,7 +11,7 @@ namespace app\api\controller\v1;
 use app\api\validate\IdMustBePositiveInteger;
 use app\api\model\Banner as BannerModel;
 use think\facade\Request;
-use app\exception\BannerMissException;
+use app\api\exception\BannerMissException;
 
 class Banner
 {
@@ -24,7 +24,6 @@ class Banner
      * @param BannerModel $banner
      * @return array|null|\PDOStatement|string|\think\Model
      * @throws BannerMissException
-     * @throws \app\exception\ParameterException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException

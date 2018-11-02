@@ -8,22 +8,32 @@
 namespace app\api\controller\v1;
 
 
+use app\api\Enum;
+use app\api\exception\ForbiddenException;
+use app\api\exception\TokenException;
 use app\api\model\User as UserModel;
 use app\api\validate\AddressNew;
 use app\api\service\Token;
-use app\exception\SuccessMessage;
-use app\exception\UserException;
+use app\api\exception\SuccessMessage;
+use app\api\exception\UserException;
 use think\facade\Request;
+use think\Controller;
 
-class Address
+class Address extends Controller
 {
+
+    protected $beforeActionList = [
+        'checkPrimaryScope' => [ 'only' => 'createOrUpdateAddress']
+    ];
+
     /**
      * 新增或更新用户地址
      * @param AddressNew $validate
      * @param Token $service
-     * @return SuccessMessage
+     * @param AddressNew $validate
+     * @param Token $service
+     * @return \think\response\Json
      * @throws UserException
-     * @throws \app\exception\ParameterException
      * @throws \think\Exception\DbException
      */
     public function createOrUpdateAddress(AddressNew $validate, Token $service)
@@ -43,5 +53,23 @@ class Address
         $user->together('address')->save($dataArr);
 
         return json(new SuccessMessage, 201);
+    }
+
+    protected function checkPrimaryScope()
+    {
+        $token = (new Token)->getTokenVar('scope');
+        if($token)
+        {
+            if($token >= (new Enum)->User)
+            {
+                return true;
+            }else
+            {
+                throw new ForbiddenException;
+            }
+        }else
+        {
+            throw new TokenException;
+        }
     }
 }

@@ -5,7 +5,7 @@
  * Time: 20:37
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 class SuccessMessage

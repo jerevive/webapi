@@ -8,9 +8,10 @@
 namespace app\api\service;
 
 
+use app\api\Enum;
 use app\api\model\User;
-use app\exception\TokenException;
-use app\exception\WxException;
+use app\api\exception\TokenException;
+use app\api\exception\WxException;
 
 class UserToken extends Token
 {
@@ -110,6 +111,7 @@ class UserToken extends Token
 
     /**
      * 缓存的数据
+     * @param Enum $enum
      * @param $wxResult
      * @param $uid
      * @return mixed
@@ -121,7 +123,7 @@ class UserToken extends Token
         /* user_id */
         $cacheValue['uid'] = $uid;
         /* scope */
-        $cacheValue['scope'] = 16;
+        $cacheValue['scope'] = 15;
 
         return $cacheValue;
     }

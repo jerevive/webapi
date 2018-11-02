@@ -5,7 +5,7 @@
  * Time: 16:41
  */
 
-namespace app\exception;
+namespace app\api\exception;
 
 
 
