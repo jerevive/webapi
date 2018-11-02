@@ -8,6 +8,8 @@
 namespace app\api\controller\v1;
 
 
+use app\api\validate\OrderPlace;
+
 class Order extends BaseController
 {
 
@@ -15,8 +17,8 @@ class Order extends BaseController
         'checkExclusiveScope' => ['only' => 'placeOrder']
     ];
 
-    public function placeOrder()
+    public function placeOrder(OrderPlace $validate)
     {
-
+        $validate->goCheck();
     }
 }
