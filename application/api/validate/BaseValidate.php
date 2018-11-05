@@ -2,10 +2,9 @@
 
 namespace app\api\validate;
 
-use app\exception\ParameterException;
-use think\Exception;
-use think\Validate;
+use app\api\exception\ParameterException;
 use think\facade\Request;
+use think\Validate;
 
 class BaseValidate extends Validate
 {
@@ -17,11 +16,12 @@ class BaseValidate extends Validate
                 'msg' => $this->error
             ]);
         }
-        return Request::param();
+        return true;
     }
 
     protected function IsMustBePositiveInt($value)
     {
+        $value = (int) $value;
         if(is_numeric($value) && is_int($value + 0) && ($value + 0) > 0)
         {
             return true;
@@ -40,7 +40,7 @@ class BaseValidate extends Validate
         return true;
     }
 
-    protected function getDataByRule($value, $data)
+    public function getDataByRule($data)
     {
         if(array_key_exists('user_id', $data) || array_key_exists('uid', $data))
         {

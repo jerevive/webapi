@@ -14,6 +14,8 @@ use think\Facade;
  * @see \app\api\service\Token
  * @method needPrimaryScope() static
  * @method needExclusiveScope() static
+ * @method getCurrentUID() static
+ * @method getTokenVar() static
  * Class Token
  * @package app\api\facade
  */

@@ -33,7 +33,7 @@ class Token
         /* salt */
         $salt = config('secure.token_salt');
 
-        return md5($chars. $timestamp. $salt);
+        return md5($chars . $timestamp . $salt);
     }
 
     /**
@@ -49,16 +49,13 @@ class Token
         $token = Request::header('token');
         /* get cached value by token */
         $vars = Cache::get($token);
-        if(!$vars) throw new TokenException();
+        if (!$vars) throw new TokenException();
 
-        if(!is_array($vars))
-        {
+        if (!is_array($vars)) {
             $vars = json_decode($vars, true);
-            if(array_key_exists($key, $vars))
-            {
+            if (array_key_exists($key, $vars)) {
                 return $vars[$key];
-            }else
-            {
+            } else {
                 throw new Exception('尝试获得的Token变量并不存在');
             }
         }
@@ -85,17 +82,13 @@ class Token
     public function needPrimaryScope()
     {
         $token = $this->getTokenVar('scope');
-        if($token)
-        {
-            if($token >= (new Enum)->user)
-            {
+        if ($token) {
+            if ($token >= (new Enum)->user) {
                 return true;
-            }else
-            {
+            } else {
                 throw new ForbiddenException;
             }
-        }else
-        {
+        } else {
             throw new TokenException;
         }
     }
@@ -110,18 +103,34 @@ class Token
     public function needExclusiveScope()
     {
         $token = $this->getTokenVar('scope');
-        if($token)
-        {
-            if($token == (new Enum)->user)
-            {
+        if ($token) {
+            if ($token == (new Enum)->user) {
                 return true;
-            }else
-            {
+            } else {
                 throw new ForbiddenException;
             }
-        }else
-        {
+        } else {
             throw new TokenException;
         }
+    }
+
+    /**
+     * 检测当前操作是否为当前用户
+     * @param $orderUid
+     * @return bool
+     * @throws Exception
+     * @throws TokenException
+     */
+    public function isValidateOperate($orderUid)
+    {
+        if(!$orderUid) throw new Exception('待检测的UID不能为空');
+
+        $tokenUid = $this->getCurrentUID();
+
+        if($orderUid == $tokenUid)
+        {
+            return true;
+        }
+        return false;
     }
 }

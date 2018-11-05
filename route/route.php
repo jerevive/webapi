@@ -30,4 +30,8 @@ Route::group('api/:version', function(){
     Route::post('address', 'api/:version.Address/createOrUpdateAddress');
 
     Route::post('order', 'api/:version.Order/placeOrder');
+    Route::get('order/by_user', 'api/:version.Order/getSummaryByUser');
+
+    Route::post('pay/pre_order', 'api/:version.Pay/getPreOrder');
+    Route::post('pay/notify', 'api/:version.Pay/receiveNotify');
 });

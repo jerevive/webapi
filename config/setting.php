@@ -5,6 +5,6 @@
  * Time: 16:31
  */
 return [
-    'imgPrefix' => 'http://zreg.com',
+    'imgPrefix' => 'http://zreg.com/images/',
     'token_expire_in' => 7200
 ];

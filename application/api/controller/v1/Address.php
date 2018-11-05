@@ -38,19 +38,21 @@ class Address extends BaseController
      */
     public function createOrUpdateAddress(AddressNew $validate, Token $service)
     {
+        /* 参数验证 */
         $validate->goCheck();
 
-        /* 根据Token 获得UID */
+        /* 根据Token获得UID */
         $uid = $service->getCurrentUID();
+
         /* 判断用户是否存在 */
         $user = UserModel::get($uid);
         if(!$user) throw new UserException;
 
         /* 获得提交的数据 */
-        $dataArr = $validate->getDataByRule(Request::param('post.'));
+        $dataArr = $validate->getDataByRule(Request::post());
 
         /* 新增或更新用户地址 (模型关联) */
-        $user->together('address')->save($dataArr);
+        $user->address()->save($dataArr);
 
         return json(new SuccessMessage, 201);
     }

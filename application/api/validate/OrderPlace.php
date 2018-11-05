@@ -9,7 +9,6 @@ namespace app\api\validate;
 
 
 use app\api\exception\ParameterException;
-use think\Exception;
 
 class OrderPlace extends BaseValidate
 {
@@ -39,17 +38,17 @@ class OrderPlace extends BaseValidate
         {
             $this->checkProduct($value);
         }
+        return true;
     }
 
     protected function checkProduct($value)
     {
         $validate = new BaseValidate($this->singleRule);
-        if($validate->check($value))
-        {
-            return true;
-        }else
-        {
-            return false;
+        $result = $validate->check($value);
+        if(!$result){
+            throw new ParameterException([
+                'msg' => '商品列表参数错误',
+            ]);
         }
     }
 }
